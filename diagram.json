@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "author": "Nassima Abbou",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 19.02,
+      "left": -81.83,
+      "attrs": {}
+    },
+    {
+      "type": "board-ili9341-cap-touch",
+      "id": "lcd1",
+      "top": -133.64,
+      "left": 105.22,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -86.7,
+      "left": -245.4,
+      "attrs": { "temperature": "24.5", "humidity": "45" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -24.0,
+      "left": -203.0,
+      "rotate": 90,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+
+    [ "esp:3V3.1", "lcd1:VCC", "red", [] ],
+    [ "esp:GND.1", "lcd1:GND", "black", [] ],
+    [ "esp:3V3.1", "lcd1:LED", "red", [] ],
+
+    [ "esp:11", "lcd1:CS", "green", [] ],
+    [ "esp:12", "lcd1:RST", "red", [] ],
+    [ "esp:13", "lcd1:D/C", "blue", [] ],
+    [ "esp:14", "lcd1:MOSI", "orange", [] ],
+    [ "esp:15", "lcd1:SCK", "yellow", [] ],
+    [ "esp:16", "lcd1:MISO", "purple", [] ],
+
+    [ "esp:3V3.1", "dht1:VCC", "red", [] ],
+    [ "esp:GND.2", "dht1:GND", "black", [] ],
+    [ "esp:4", "dht1:SDA", "green", [] ],
+    [ "r1:1", "dht1:VCC", "red", [] ],
+    [ "r1:2", "dht1:SDA", "green", [] ]
+  ],
+  "dependencies": {}
+}
